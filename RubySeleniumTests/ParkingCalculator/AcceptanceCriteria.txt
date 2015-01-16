@@ -1,0 +1,107 @@
+Feature: Pay for parking
+
+Scenario outline: Short term parking
+Given that I am on "http://adam.goucher.ca/parkcalc/"
+And I have chosen to park <term>
+And I have chosen the <entry_date>
+And I have chosen the <entry_time>
+And I have chosen the <exit_date>
+And I have chosen the <exit_time>
+When I calculate
+Then <cost> will display
+
+
+|term|entry_date|entry_time|exit_date|exit_time|cost|
+|Short-Term Parking|1:00 pm|01/16/2015|01/16/2015|2:00 pm|$ 2.00 (0 Days, 1 Hours, 0 Minutes)|
+|Short-Term Parking|6:30 pm|01/16/2015|01/16/2015|9:30 pm|$ 6.00 (0 Days, 3 Hours, 0 Minutes)|
+|Short-Term Parking|8:30 pm|01/16/2015|01/17/2015|1:30 am|$ 10.00 (0 Days, 5 Hours, 0 Minutes)|
+|Short-Term Parking|8:45 am|01/16/2015|01/16/2015|9:15 am|$ 2.00 (0 Days, 0 Hours, 30 Minutes)|
+|Short-Term Parking|9:45 am|01/16/2015|01/30/2015|10:25 am|$ 672.00 (0 Days, 0 Hours, 30 Minutes)|
+
+
+
+
+Scenario outline:: Economy parking
+Given that I am on "http://adam.goucher.ca/parkcalc/"
+And I have chosen to park <term>
+And I have chosen the <entry_date_time>
+And I have chosen the <exit_date_time>
+When I calculate
+Then <cost> will display
+
+|term|entry_date|entry_time|exit_date|exit_time|cost|
+|Economy Parking|9:00 am|01/16/2015|01/16/2015|11:30 am|$ 2.00 (0 Days, 1 Hours, 0 Minutes)|
+|Economy Parking|9:00 am|01/16/2015|01/20/2015|9:00 am|$ 36.00 (4 Days, 0 Hours, 0 Minutes)|
+
+
+
+
+Scenario outline: Long term surface parking
+Given that I am on "http://adam.goucher.ca/parkcalc/"
+And I have chosen to park <term>
+And I have chosen the <entry_date_time>
+And I have chosen the <exit_date_time>
+When I calculate
+Then <cost> will display
+
+
+|term|entry_date|entry_time|exit_date|exit_time|cost|
+|Long-Term Surface Parking|9:00 am|01/16/2015|03/16/2015|09:00 am|$ 510.00 (58 Days, 23 Hours, 0 Minutes)|
+
+
+Scenario outline: Long term garage parking
+Given that I am on "http://adam.goucher.ca/parkcalc/"
+And I have chosen to park <term>
+And I have chosen the <entry_date_time>
+And I have chosen the <exit_date_time>
+When I calculate
+Then <cost> will display
+
+|term|entry_date|entry_time|exit_date|exit_time|cost|
+|Long-Term Garage Parking|9:00 am|01/16/2015|03/16/2015|09:00 am|$ 612.00 (58 Days, 23 Hours, 0 Minutes)|
+
+
+
+
+
+Scenario: Velvet parking
+Given that I am on "http://adam.goucher.ca/parkcalc/"
+And I have chosen to park <term>
+And I have chosen the <entry_date_time>
+And I have chosen the <exit_date_time>
+When I calculate
+Then <cost> will display
+
+|term|entry_date|entry_time|exit_date|exit_time|cost|
+|Valet Parking|9:00 am|01/16/2015|03/16/2015|09:00 am|$ 1,770.00 (58 Days, 23 Hours, 0 Minutes)|
+|Valet Parking|9:00 am|01/16/2015|01/17/2015|09:00 am|$ 42.00 (1 Days, 0 Hours, 0 Minutes)|
+
+
+
+---UI tests
+
+Feature: Parking calculator field validation
+
+Scenario outline: Check that calculator fields are presents
+Given that I am on "http://adam.goucher.ca/parkcalc/"
+Then following fields will be present
+
+Parking heading
+Choose a lot
+Choose entry Date and Time
+Choose Leaving Date and Time
+COST
+Parking dropdown
+entry time textbox
+am,pm radio
+entry date textbox
+
+exit time textbox
+am,pm radio
+exit date textbox
+
+Cost display field
+
+Calculate
+
+

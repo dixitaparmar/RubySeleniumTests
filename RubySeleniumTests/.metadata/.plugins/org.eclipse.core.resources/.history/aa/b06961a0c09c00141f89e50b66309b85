@@ -1,0 +1,11 @@
+Given(/^I am on "(.*?)" page$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I type "(.*?)" in search field$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should see "(.*?)" in result$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end

@@ -1,0 +1,19 @@
+require "rubygems"
+require "rspec"
+require "selenium-webdriver"
+
+
+Given(/^I am on "(.*?)" page$/) do |path_to|
+   $driver_ff.navigate.to path_to
+end
+
+When(/^I type "(.*?)" in search field$/) do |string_search| 
+
+  $driver_ff.find_element(:id, "masthead-search-term").sendkeys(string_search)
+  $driver_ff.find_element(:id, "search-btn").click
+  
+end
+
+Then(/^I should see "(.*?)" in result$/) do |string_expectation|
+  #page.should have_content string_expectation
+end

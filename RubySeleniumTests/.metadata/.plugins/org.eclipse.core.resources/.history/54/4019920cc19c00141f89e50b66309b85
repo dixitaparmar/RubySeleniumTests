@@ -1,0 +1,15 @@
+Given(/^I am on "(.*?)" page$/) do |path_to|
+  pvisit path_to
+end
+
+When(/^I type "(.*?)" in search field$/) do |string_search|
+  TXT_SEARCH = ".//*[@id='masterhead-search-term']"
+  BTN_SEARCH= ".//*[@id='search-btn']"
+  
+  find(:xpath, TXT_SEARCH).set string_search
+  find(:xpath, BTN_SEARCH).click
+end
+
+Then(/^I should see "(.*?)" in result$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
