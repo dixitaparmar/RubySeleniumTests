@@ -5,6 +5,7 @@ require "selenium-webdriver"
 
 Given(/^I am on "(.*?)" page$/) do |path_to|
    $driver_ff.navigate.to path_to
+   print "test"
 end
 
 When(/^I type "(.*?)" in search field$/) do |string_search| 
