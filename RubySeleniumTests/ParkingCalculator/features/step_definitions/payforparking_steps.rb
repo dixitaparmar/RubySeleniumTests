@@ -61,20 +61,19 @@ When(/^I choose to view the parking cost$/) do
   $driver_ff.find_element(:name, "Submit").click
 end
 
-Then(/^I should see cost "(.*?)" in results$/) do |cost|
-  
+Then(/^I should see cost "(.*?)" adn "(.*?)" in results$/) do |cost, duration|
+
   actual = $driver_ff.find_element(:css, "b").text
-  if actual.to_str == "$ 2.00"
-    print "Test passed"
+  if actual.to_str == cost
+    puts "Test passed"
   else
-    print "Test failed"
+    puts "Test failed"
   end
   actual = $driver_ff.find_element(:css, "span.BodyCopy > font > b").text
-  if actual.to_str == "(0 Days, 1 Hours, 0 Minutes)"
-    print "Test passed"
+  if actual.to_str == duration
+    puts "Test passed"
   else
-    print "Test failed"
+    puts "Test failed"
   end
-  $driver_ff.quit
 end
  
